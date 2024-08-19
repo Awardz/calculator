@@ -46,6 +46,10 @@ operators.forEach((button) =>
 
     button.addEventListener("click", () =>
     {
+        /*
+            Where the majority of work needs to be added.
+            Add if statements for the other operations.
+            */
         if(button.id === "+")
         {
             //finalA += parseInt(temp.join(""));
@@ -62,13 +66,12 @@ operators.forEach((button) =>
     })
     
 })
-if(equal)
-{
-
+/*
+    Update the display and variable after this event
+*/
 equal.addEventListener("click", () =>
-{
-    
+{ 
     console.log(add(finalA, parseInt(temp.join(""))));
 });
-}
+
 
