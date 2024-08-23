@@ -63,10 +63,10 @@ operators.forEach((button) =>
 
         if(button.id === "-")
         {
-            
+
             if(!(temp.length === 0))
-                num = subtract(num, parseInt(temp.join("")));
-    
+                num = Math.abs(subtract(num, parseInt(temp.join(""))));
+            
             display.textContent = num;
             console.log(num)
             console.log(button.textContent)
