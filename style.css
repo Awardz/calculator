@@ -1,0 +1,40 @@
+.container
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+body
+{
+    background: blueviolet;
+}
+
+.display
+{
+    margin-top: 20px;
+    font-size: 80px;
+    background: grey;
+    padding: 10px;
+    width: 780px;
+    text-align: right;
+}
+
+button
+{
+    height: 100px;
+    width: 200px;
+    background: black;
+    color: blueviolet;
+    font-size: xx-large;
+    font-weight: bolder;
+}
+
+.row
+{
+    display: flex;
+}
+
+
+
