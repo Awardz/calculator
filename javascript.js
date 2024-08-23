@@ -22,6 +22,10 @@ const display = document.querySelector(".display");
 const numbers = document.querySelectorAll(".numbers");
 const operators = document.querySelectorAll(".operators");
 const equal = document.querySelector("#equal");
+const clear = document.querySelector("#clear");
+const allClear = document.querySelector("#allclear");
+const buttons = document.querySelectorAll("button");
+
 let temp = [];
 let num = 0;
 let a = 0 
@@ -32,6 +36,8 @@ let sign = ""
     {
         button.addEventListener("click", () =>
         {
+            if(sign === "" && !(num === 0))
+                num = 0;
             temp.push(parseInt(button.id));
             console.log(button.id)
             display.textContent = temp.join("");
@@ -43,15 +49,11 @@ let sign = ""
 
 operators.forEach((button) =>
 {
-
     button.addEventListener("click", () =>
     {
-        /*
-            Where the majority of work needs to be added.
-            Add if statements for the other operations.
-            */
-        if(sign === "")
+        if(sign === "" && num === 0)
             sign = button.textContent;
+    
 
         if(button.id === "+")
         {
@@ -86,9 +88,7 @@ operators.forEach((button) =>
     })
     
 })
-/*
-    Update the display and variable after this event
-*/
+
 equal.addEventListener("click", () =>
 { 
     if(sign === "+")
@@ -97,19 +97,31 @@ equal.addEventListener("click", () =>
     if(sign === "-")
         num = subtract(num, parseInt(temp.join("")));
 
-
     if(sign === "*")
         num = multiply(num, parseInt(temp.join("")));
-   
-
     if(sign === "/")
         num = divide(num, parseInt(temp.join("")));
        
-
     display.textContent = num;
     sign = ""
     temp = []
 });
+
+clear.addEventListener("click", () =>
+{
+    temp = [];
+    display.textContent = 0;
+})
+
+allClear.addEventListener("click", () =>
+{
+    num = 0;
+    temp = [];
+    sign = "";
+    display.textContent = 0;
+})
+
+
 
 function calculate()
 {
@@ -144,4 +156,26 @@ function calculate()
         
 }
 
+function hover()
+{
+    buttons.forEach((button) => 
+    {   
+        button.addEventListener("mouseenter", () =>
+        {
+            button.style.background = "yellow";
+        })
+
+        button.addEventListener("mouseleave", () =>
+        {
+            button.style.background = "black";
+        })
+
+        button.addEventListener("mousedown", () =>
+        {
+            button.style.background = "green";
+        })
+    });
+}
+
+hover();
 
