@@ -50,51 +50,37 @@ operators.forEach((button) =>
             Where the majority of work needs to be added.
             Add if statements for the other operations.
             */
+        if(sign === "")
+            sign = button.textContent;
+
         if(button.id === "+")
         {
-            if(!(temp.length === 0))
-                num = add(num, parseInt(temp.join("")));
-            display.textContent = num;
-            console.log(num)
-            console.log(button.textContent)
+            calculate();
             sign = button.textContent;
-            temp = [];
         }
 
         if(button.id === "-")
         {
             calculate();
-            if(!(temp.length === 0))
-                num = Math.abs(subtract(num, parseInt(temp.join(""))));
-            
-            display.textContent = num;
-            console.log(num)
-            console.log(button.textContent)
             sign = button.textContent;
-            temp = [];
         }
 
         if(button.id === "*")
         {
+            if(temp.length === 0)
+                temp.push(1)
+
             calculate();
-            if(!(temp.length === 0))
-                num = multiply(num, parseInt(temp.join("")));
-            else
-                num = parseInt(temp.join(""));
-            
-            console.log(num)
-            console.log(button.textContent)
             sign = button.textContent;
-            temp = [];
+           
         }
 
         if(button.id === "/")
         {
-            num = divide(num, parseInt(temp.join("")));
-            console.log(num)
-            console.log(button.textContent)
+            calculate();
+    
             sign = button.textContent;
-            temp = [];
+          
         }
      
     })
@@ -106,42 +92,53 @@ operators.forEach((button) =>
 equal.addEventListener("click", () =>
 { 
     if(sign === "+")
-    {
         num = add(num, parseInt(temp.join("")));
-        display.textContent = num;
-        sign = ""
-        temp = []
-    }
-
+ 
     if(sign === "-")
-    {
         num = subtract(num, parseInt(temp.join("")));
-        display.textContent = num;
-        sign = ""
-        temp = []
-    }
+
 
     if(sign === "*")
-    {
         num = multiply(num, parseInt(temp.join("")));
-        display.textContent = num;
-        sign = ""
-        temp = []
-    }
+   
 
-    if(sign === "+")
-    {
-        num = add(num, parseInt(temp.join("")));
-        display.textContent = num;
-        sign = ""
-        temp = []
-    }
+    if(sign === "/")
+        num = divide(num, parseInt(temp.join("")));
+       
+
+    display.textContent = num;
+    sign = ""
+    temp = []
 });
 
 function calculate()
 {
     if(sign === "+")
-        num = add(num, parseInt(temp.join("")));
+        if(!(temp.length === 0))
+            num = add(num, parseInt(temp.join("")));
+    
+    if(sign === "-")
+        if(!(temp.length === 0))
+            num = Math.abs(subtract(num, parseInt(temp.join(""))));
+
+    if(sign === "*")
+    {
+        if(!(temp.length === 0) && !(num === 0))
+            num = multiply(num, parseInt(temp.join("")));
+        else
+            num = parseInt(temp.join(""))
+    }
+
+    if(sign === "/")
+        if(!(temp.length === 0) && !(num === 0))
+            num = divide(num, parseInt(temp.join("")));
+        else
+            num = parseInt(temp.join(""))
+
+        
+        
+
+    console.log(num)
     display.textContent = num;
     temp = [];
         
