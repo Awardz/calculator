@@ -23,10 +23,10 @@ const numbers = document.querySelectorAll(".numbers");
 const operators = document.querySelectorAll(".operators");
 const equal = document.querySelector("#equal");
 let temp = [];
-let b = 0;
+let num = 0;
 let a = 0 
 let sign = ""
-let finalA = 0;
+
 
     numbers.forEach((button) =>
     {
@@ -52,17 +52,49 @@ operators.forEach((button) =>
             */
         if(button.id === "+")
         {
-            //finalA += parseInt(temp.join(""));
-            finalA = add(finalA, parseInt(temp.join("")));
-            console.log(finalA)
+            if(!(temp.length === 0))
+                num = add(num, parseInt(temp.join("")));
+            display.textContent = num;
+            console.log(num)
             console.log(button.textContent)
             sign = button.textContent;
             temp = [];
-            
         }
-       
 
-        
+        if(button.id === "-")
+        {
+            
+            if(!(temp.length === 0))
+                num = subtract(num, parseInt(temp.join("")));
+    
+            display.textContent = num;
+            console.log(num)
+            console.log(button.textContent)
+            sign = button.textContent;
+            temp = [];
+        }
+
+        if(button.id === "*")
+        {
+            if(!(num === 0) && !(temp.length === 0))
+                num = multiply(num, parseInt(temp.join("")));
+            else 
+                num = parseInt(temp.join(""));
+            console.log(num)
+            console.log(button.textContent)
+            sign = button.textContent;
+            temp = [];
+        }
+
+        if(button.id === "/")
+        {
+            num = divide(num, parseInt(temp.join("")));
+            console.log(num)
+            console.log(button.textContent)
+            sign = button.textContent;
+            temp = [];
+        }
+     
     })
     
 })
@@ -71,7 +103,37 @@ operators.forEach((button) =>
 */
 equal.addEventListener("click", () =>
 { 
-    console.log(add(finalA, parseInt(temp.join(""))));
+    if(sign === "+")
+    {
+        num = add(num, parseInt(temp.join("")));
+        display.textContent = num;
+        sign = ""
+        temp = []
+    }
+
+    if(sign === "-")
+    {
+        num = subtract(num, parseInt(temp.join("")));
+        display.textContent = num;
+        sign = ""
+        temp = []
+    }
+
+    if(sign === "*")
+    {
+        num = multiply(num, parseInt(temp.join("")));
+        display.textContent = num;
+        sign = ""
+        temp = []
+    }
+
+    if(sign === "+")
+    {
+        num = add(num, parseInt(temp.join("")));
+        display.textContent = num;
+        sign = ""
+        temp = []
+    }
 });
 
 
