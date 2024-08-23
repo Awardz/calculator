@@ -63,7 +63,7 @@ operators.forEach((button) =>
 
         if(button.id === "-")
         {
-
+            calculate();
             if(!(temp.length === 0))
                 num = Math.abs(subtract(num, parseInt(temp.join(""))));
             
@@ -76,10 +76,12 @@ operators.forEach((button) =>
 
         if(button.id === "*")
         {
-            if(!(num === 0) && !(temp.length === 0))
+            calculate();
+            if(!(temp.length === 0))
                 num = multiply(num, parseInt(temp.join("")));
-            else 
+            else
                 num = parseInt(temp.join(""));
+            
             console.log(num)
             console.log(button.textContent)
             sign = button.textContent;
@@ -135,5 +137,14 @@ equal.addEventListener("click", () =>
         temp = []
     }
 });
+
+function calculate()
+{
+    if(sign === "+")
+        num = add(num, parseInt(temp.join("")));
+    display.textContent = num;
+    temp = [];
+        
+}
 
 
